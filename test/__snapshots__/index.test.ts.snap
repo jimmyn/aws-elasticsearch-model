@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ElasticModel buildQuery should work correctly 1`] = `
+Object {
+  "aggregations": undefined,
+  "items": Array [
+    Object {
+      "id": 0,
+    },
+    Object {
+      "id": 1,
+    },
+    Object {
+      "id": 2,
+    },
+    Object {
+      "id": 3,
+    },
+    Object {
+      "id": 4,
+    },
+  ],
+  "raw": Object {
+    "_shards": Object {
+      "failed": 0,
+      "skipped": 0,
+      "successful": 25,
+      "total": 25,
+    },
+    "hits": Object {
+      "hits": Array [
+        Object {
+          "_id": 0,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 0,
+          },
+          "_type": undefined,
+        },
+        Object {
+          "_id": 1,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 1,
+          },
+          "_type": undefined,
+        },
+        Object {
+          "_id": 2,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 2,
+          },
+          "_type": undefined,
+        },
+        Object {
+          "_id": 3,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 3,
+          },
+          "_type": undefined,
+        },
+        Object {
+          "_id": 4,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 4,
+          },
+          "_type": undefined,
+        },
+      ],
+      "max_score": 0,
+      "total": Object {
+        "relation": "eq",
+        "value": 25,
+      },
+    },
+    "timed_out": false,
+    "took": 6,
+  },
+  "total": 25,
+}
+`;
+
+exports[`ElasticModel bulkIndex should create index if missing 1`] = `
+Object {
+  "index": "missing-index",
+}
+`;
+
+exports[`ElasticModel bulkIndex should create index if missing 2`] = `
+Object {
+  "body": Object {
+    "mappings": Object {
+      "properties": Object {
+        "email": Object {
+          "type": "email",
+        },
+        "name": Object {
+          "type": "text",
+        },
+      },
+    },
+    "settings": Object {
+      "analysis": Object {
+        "analyzer": Object {
+          "email": Object {
+            "tokenizer": "uax_url_email",
+            "type": "custom",
+          },
+        },
+      },
+    },
+  },
+  "index": "missing-index",
+}
+`;
+
+exports[`ElasticModel bulkIndex should create index if missing 3`] = `
+Object {
+  "errors": false,
+  "items": Array [
+    Object {
+      "index": Object {
+        "_id": "some_id",
+        "_index": "missing-index",
+      },
+    },
+  ],
+  "took": 6,
+}
+`;
+
+exports[`ElasticModel bulkIndex should exclude fields specified in excludedFields array 1`] = `
+Array [
+  Object {
+    "body": Array [
+      Object {
+        "index": Object {
+          "_id": "some_id",
+          "_index": "existing-index",
+        },
+      },
+      Object {
+        "id": "some_id",
+      },
+    ],
+  },
+]
+`;
+
+exports[`ElasticModel bulkIndex should not create index if already exists 1`] = `
+Object {
+  "errors": false,
+  "items": Array [
+    Object {
+      "index": Object {
+        "_id": "some_id",
+        "_index": "existing-index",
+      },
+    },
+  ],
+  "took": 6,
+}
+`;
+
+exports[`ElasticModel deleteIndex should work correctly 1`] = `
+Object {
+  "acknowledged": true,
+}
+`;
+
+exports[`ElasticModel indexFromDynamoDBStream should exclude fields specified in excludedFields array 1`] = `
+Array [
+  Object {
+    "body": Array [
+      Object {
+        "index": Object {
+          "_id": "some-id",
+          "_index": "existing-index",
+        },
+      },
+      Object {
+        "id": "some-id",
+      },
+      Object {
+        "delete": Object {
+          "_id": "some-id",
+          "_index": "existing-index",
+        },
+      },
+      Object {
+        "update": Object {
+          "_id": "some-id",
+          "_index": "existing-index",
+        },
+      },
+      Object {
+        "doc": Object {
+          "id": "some-id",
+        },
+      },
+    ],
+  },
+]
+`;
+
+exports[`ElasticModel indexFromDynamoDBStream should generate correct bulk request 1`] = `
+Array [
+  Object {
+    "body": Array [
+      Object {
+        "index": Object {
+          "_id": "some-id",
+          "_index": "existing-index",
+        },
+      },
+      Object {
+        "email": "email@example.com",
+        "id": "some-id",
+      },
+      Object {
+        "delete": Object {
+          "_id": "some-id",
+          "_index": "existing-index",
+        },
+      },
+      Object {
+        "update": Object {
+          "_id": "some-id",
+          "_index": "existing-index",
+        },
+      },
+      Object {
+        "doc": Object {
+          "email": "email@example.com",
+          "id": "some-id",
+        },
+      },
+    ],
+  },
+]
+`;
+
+exports[`ElasticModel search should return correct result 1`] = `
+Object {
+  "aggregations": undefined,
+  "items": Array [
+    Object {
+      "id": 0,
+    },
+    Object {
+      "id": 1,
+    },
+    Object {
+      "id": 2,
+    },
+    Object {
+      "id": 3,
+    },
+    Object {
+      "id": 4,
+    },
+  ],
+  "raw": Object {
+    "_shards": Object {
+      "failed": 0,
+      "skipped": 0,
+      "successful": 25,
+      "total": 25,
+    },
+    "hits": Object {
+      "hits": Array [
+        Object {
+          "_id": 0,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 0,
+          },
+          "_type": undefined,
+        },
+        Object {
+          "_id": 1,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 1,
+          },
+          "_type": undefined,
+        },
+        Object {
+          "_id": 2,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 2,
+          },
+          "_type": undefined,
+        },
+        Object {
+          "_id": 3,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 3,
+          },
+          "_type": undefined,
+        },
+        Object {
+          "_id": 4,
+          "_index": "existing-index",
+          "_score": 0,
+          "_source": Object {
+            "id": 4,
+          },
+          "_type": undefined,
+        },
+      ],
+      "max_score": 0,
+      "total": Object {
+        "relation": "eq",
+        "value": 25,
+      },
+    },
+    "timed_out": false,
+    "took": 6,
+  },
+  "total": 25,
+}
+`;
+
+exports[`ElasticModel should throw en error if required config is missing 1`] = `"Required config \\"host\\" is missing!"`;
+
+exports[`ElasticModel should throw en error if required config is missing 2`] = `"Required config \\"index\\" is missing!"`;
+
+exports[`ElasticModel should throw en error if required config is missing 3`] = `"Required config \\"index\\" is missing!"`;

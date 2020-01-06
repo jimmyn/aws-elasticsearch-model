@@ -10,7 +10,10 @@ import {excludeKeys, validateConfig} from 'utils';
 export interface IElasticMapping {
   [key: string]: {
     type?: string;
+    analyzer?: string;
+    index?: boolean;
     properties?: IElasticMapping;
+    [key: string]: any;
   };
 }
 
@@ -30,7 +33,7 @@ export interface ISearchResult<T> {
   items: T[];
   total: number;
   aggregations?: any;
-  raw: SearchResponse<T>
+  raw: SearchResponse<T>;
 }
 
 export interface IBodyBuilder<T>
@@ -120,10 +123,12 @@ export class ElasticModel<T extends Item> {
       body: query
     };
     const response = await this.client.search<T>(params);
-
+    // @ts-ignore
+    const total =
+      typeof response.hits.total === 'number' ? response.hits.total : response.hits.total.value;
     return {
       items: response.hits.hits.map(hit => hit._source),
-      total: response.hits.total,
+      total,
       aggregations: response.aggregations,
       raw: response
     };
@@ -144,7 +149,7 @@ export class ElasticModel<T extends Item> {
   }
 
   /**
-   * Deletes index: indexName from ElasticSearch
+   * Deletes index from ElasticSearch
    */
   async deleteIndex() {
     return this.client.indices.delete({index: this.index});
@@ -203,9 +208,10 @@ export class ElasticModel<T extends Item> {
    * Creates an index in ElasticSearch if it doesn't exist
    * if mapping was defined in config, it will be created for an index as well
    */
-  protected async createIndexIfMissing() {
+  async createIndexIfMissing() {
     // check if index already exists
     const indexExists = await this.client.indices.exists({index: this.index});
+    console.log({indexExists});
     if (indexExists) return true;
 
     const params: IndicesCreateParams = {index: this.index, body: {}};
@@ -217,6 +223,9 @@ export class ElasticModel<T extends Item> {
     if (this.settings) {
       params.body.settings = this.settings;
     }
+
+    console.log(JSON.stringify(params, null, 2));
+
     return this.client.indices.create(params);
   }
 }

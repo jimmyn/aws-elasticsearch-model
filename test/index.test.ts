@@ -2,8 +2,6 @@ import {Client} from 'elasticsearch';
 import {dynamoDBStreamEvent} from './fixtures';
 import {ElasticModel} from 'index';
 
-jest.mock('elasticsearch');
-
 const defaultConfig = {
   host: 'https://someurl.com',
   index: 'existing-index'
@@ -53,7 +51,7 @@ describe('ElasticModel', () => {
       },
       mapping: {
         email: {
-          type: 'text'
+          type: 'email'
         },
         name: {
           type: 'text'

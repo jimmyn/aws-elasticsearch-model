@@ -16,12 +16,16 @@ export const Client = jest.fn().mockImplementation(function() {
   // @ts-ignore
   this.search = jest.fn(async ({index, type, body}) => {
     const items = new Array(body.size || 25).fill(undefined);
+    const total = items.length * 5;
     return {
       took: 6,
       timed_out: false,
-      _shards: {total: 5, successful: 5, skipped: 0, failed: 0},
+      _shards: {total: total, successful: total, skipped: 0, failed: 0},
       hits: {
-        total: items.length * 5,
+        total: {
+          value: total,
+          relation: "eq"
+        },
         max_score: 0,
         hits: items.map((_, i) => ({
           _index: index,
