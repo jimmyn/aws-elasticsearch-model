@@ -1,5 +1,5 @@
-# AWS ElasticSearch Model
-A small library that simplifies [AWS ElasticSearch Service](https://aws.amazon.com/elasticsearch-service/) integration into serverless applications build with AWS Lambda
+# AWS Elasticsearch Model
+A small library that simplifies [AWS Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/) integration into serverless applications build with AWS Lambda
 
 ## Install
 ```
@@ -55,9 +55,9 @@ const result = await elasticModel.bulkIndex(users);
 ```
 
 ## Sync your index with DynamoDB table using Lambda
-Quite often DynamoDB table is used as a source of trouth to store data and ElasticSearch is used to provide advanced seach capabilities. In this case a Lambda function is required to sync data betwean DynamoDB table and ElasticSearch index
+Quite often DynamoDB table is used as a source of truth to store data and Elasticsearch is used to provide advanced search capabilities. In this case a Lambda function is required to sync data between DynamoDB table and Elasticsearch index
 
-Attach this lambda handler to your DynamoDB table and it will sync all the data changes with ElasticSearch
+Attach this lambda handler to your DynamoDB table and it will sync all the data changes with Elasticsearch
 
 ```typescript
 import {DynamoDBStreamEvent} from 'aws-lambda';
@@ -74,7 +74,7 @@ export const handler = async (event: DynamoDBStreamEvent) => {
 
 ```
 
-Your lambda function needs to have a role attached to it that allows to access your ElasticSearch instance
+Your lambda function needs to have a role attached to it that allows to access your Elasticsearch instance
 
 ```
 {
@@ -100,7 +100,7 @@ It uses [bodybuilder](https://github.com/danpaz/bodybuilder) package by [Daniel 
 
 To get full builder api check the [docs here](https://bodybuilder.js.org/docs/)
 
-To execure the query call `query.exec()` at the end
+To execute the query call `query.exec()` at the end
 
 ```typescript
 const query = elasticModel
@@ -158,7 +158,7 @@ const result = await elasticModel.search({
 ```
 
 ## Use custom mapping and index settings
-By default ElasticSearch will try to guess your data stracture but you can provide your own index mapping to improve search performance.
+By default Elasticsearch will try to guess your data structure but you can provide your own index mapping to improve search performance.
 
 ```typescript
 const elasticModel = new ElasticModel({
@@ -192,7 +192,7 @@ const elasticModel = new ElasticModel({
 Read more about [mappings](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) and [settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings)
 
 ## Use custom `id` field
-By defaul ElasticModel will use `id` field in your data to privide unique `id` to ElasticSearch but it can be customized.
+By default ElasticModel will use `id` field in your data to provide unique `id` to Elasticsearch but it can be customized.
 
 ```typescript
 const elasticModel = new ElasticModel({
@@ -202,7 +202,7 @@ const elasticModel = new ElasticModel({
 });
 ```
 
-When you sync your data with DynamoDB `DynamoDBStreamEvent` event provides `Keys` object that will contain a composit hash key of your item. For example if you have `hashKey: 'userId', rangeKey: 'createdAt'` by default only `userId` filed will be selected as `id` (if it is specified in config).
+When you sync your data with DynamoDB `DynamoDBStreamEvent` event provides `Keys` object that will contain a composite hash key of your item. For example if you have `hashKey: 'userId', rangeKey: 'createdAt'` by default only `userId` filed will be selected as `id` (if it is specified in config).
 
 This behaviour can be customized: 
 
@@ -217,7 +217,7 @@ export const handler = async (event: DynamoDBStreamEvent) => {
 ```
 
 ## Exclude fields
-To completly exclude fields from ElasticSearch you can provide `excludedFields` option. This option will remove the field before data is submited.
+To completely exclude fields from Elasticsearch you can provide `excludedFields` option. This option will remove the field before data is submitted.
 
 ```typescript
 const elasticModel = new ElasticModel({
@@ -247,8 +247,8 @@ const elasticModel = new ElasticModel({
 });
 ```
 
-## Access ElasticSearch client
+## Access Elasticsearch client
 ElasticModel provides direct access to [elasticsearch client](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/16.x/index.html). You can access client instance as `elasticModel.client`
 
-## Avaliable config options
+## Available config options
 You can find all config options [here](src/index.ts#L72)
