@@ -74,10 +74,11 @@ class ElasticModel<T extends Item> {
    * @param config
    * @param config.host - ES instance url
    * @param config.index - ES index name
-   * @param config.mapping - type mapping
+   * @param config.mapping - index mapping
    * @param config.settings - index settings
    * @param config.idField - unique id field for an item (default: id)
    * @param config.excludedFields - an array of fields excluded from ES
+   * @param config.apiVersion - ES api version
    */
   constructor(config: IElasticModelConfig) {
     validateConfig(config, ['host', 'index']);
