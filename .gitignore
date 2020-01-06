@@ -4,3 +4,4 @@ node_modules
 dist
 /.idea/
 /test/integration.test.ts
+/.env

@@ -5,7 +5,13 @@
   "author": "Dmitriy Nevzorov",
   "repository": "https://github.com/jimmyn/aws-elasticsearch-model",
   "module": "dist/aws-elasticsearch-model.esm.js",
-  "keywords": ["aws", "elasticsearch", "serverless", "aws-lambda", "aws-elasticsearch"],
+  "keywords": [
+    "aws",
+    "elasticsearch",
+    "serverless",
+    "aws-lambda",
+    "aws-elasticsearch"
+  ],
   "description": "Simplifies AWS ElasticSearch Service integration into serverless applications built with AWS Lambda",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -18,7 +24,7 @@
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "release": "release-it"
+    "release": "node -r dotenv/config $(npm bin)/release-it"
   },
   "peerDependencies": {},
   "husky": {
@@ -43,7 +49,10 @@
       "publish": true
     },
     "hooks": {
-      "before:init": ["yarn lint", "yarn test"]
+      "before:init": [
+        "yarn lint",
+        "CI=true yarn test"
+      ]
     }
   },
   "devDependencies": {
@@ -54,6 +63,7 @@
     "@types/jest": "^24.0.25",
     "aws-lambda": "latest",
     "aws-sdk": "^2.597.0",
+    "dotenv": "^8.2.0",
     "faker": "latest",
     "husky": "^3.1.0",
     "release-it": "^12.4.3",
