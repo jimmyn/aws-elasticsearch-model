@@ -118,3 +118,37 @@ const result = await elasticModel.search({
   }
 });
 ```
+
+## Use custom mapping and index settings
+By default ElasticSearch will try to guess your data stracture but you can provide your own index mapping to improve search performance.
+
+```typescript
+const elasticModel = new ElasticModel({
+  host: 'https://my-aws-elasticsearch-domain-udlcqmxzyxqjc5pkoab2oeg2ai.eu-west-1.es.amazonaws.com',
+  index: 'users',
+  settings: {
+    analysis: {
+      analyzer: {
+        email: {
+          type: 'custom',
+          tokenizer: 'uax_url_email'
+        }
+      }
+    }
+  },
+  mapping: {
+    id: {
+      type: 'keyword'
+    },
+    email: {
+      type: 'text',
+      analyzer: 'email'
+    },
+    name: {
+      type: 'text'
+    }
+  }
+});
+```
+
+Read more about [mappings](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) and [settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings)
