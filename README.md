@@ -1,5 +1,5 @@
 # AWS ElasticSearch Model
-A small library that simplifies [AWS ElasticSeach Service](https://aws.amazon.com/elasticsearch-service/) integration into serverless applications build with AWS Lambda
+A small library that simplifies [AWS ElasticSearch Service](https://aws.amazon.com/elasticsearch-service/) integration into serverless applications build with AWS Lambda
 
 ## Install
 ```
