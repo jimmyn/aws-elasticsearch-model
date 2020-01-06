@@ -208,3 +208,9 @@ const elasticModel = new ElasticModel({
   }
 });
 ```
+
+## Access ElasticSearch client
+ElasticModel provides direct access to [elasticsearch client](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/16.x/index.html). You can access client instance as `elasticModel.client`
+
+## Avaliable config options
+You can find all config options [here](src/index.ts#L72)
