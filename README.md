@@ -74,6 +74,25 @@ export const handler = async (event: DynamoDBStreamEvent) => {
 
 ```
 
+Your lambda function needs to have a role attached to it that allows to access your ElasticSearch instance
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "es:ESHttpPost",
+        "es:ESHttpPut",
+        "es:ESHttpDelete"
+      ],
+      "Resource": "arn:aws:es:AWS_REGION:AWS_ACCOUNT_ID:domain/my-elasticsearch-domain/*",
+      "Effect": "Allow"
+    }
+  ]
+}
+```
+
 ## Query your data
 [queryBuilder](src/index.ts#L145) method will return a chainable function that allows easily build complex queries for elasticsearch with a simple, predictable api.
 
@@ -188,7 +207,7 @@ const elasticModel = new ElasticModel({
   excludedFields: ['email']
 });
 ```
-If you want field value to be stored but not indexed or available for search you can set `idex: false` parameter in mapping
+If you want field value to be stored but not indexed or available for search you can set `index: false` parameter in mapping
 
 ```typescript
 const elasticModel = new ElasticModel({
