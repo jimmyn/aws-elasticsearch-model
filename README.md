@@ -73,3 +73,48 @@ export const handler = async (event: DynamoDBStreamEvent) => {
 };
 
 ```
+
+## Query your data
+`queryBuilder` method will return a chainable function that allows easily build complex queries for elasticsearch with a simple, predictable api.
+
+It uses [bodybuilder](https://github.com/danpaz/bodybuilder) package by [Daniel Paz-Soldan](https://github.com/danpaz)
+
+To get full builder api check the [docs here](https://bodybuilder.js.org/docs/)
+
+To execure the query call `query.exec()` at the end
+
+```typescript
+const query = elasticModel
+  .queryBuilder()
+  .filter('match', 'email', 'Ibrahim.Sawayn93@hotmail.com')
+  .orFilter('match', 'email', 'Rafaela_Kohler74@gmail.com');
+
+const result = await query.exec();
+```
+
+You can also run a search query directly. The query above is equivalent to:
+
+```typescript
+const result = await elasticModel.search({
+  query: {
+    bool: {
+      filter: {
+        bool: {
+          must: {
+            match: {
+              email: 'Ibrahim.Sawayn93@hotmail.com'
+            }
+          },
+          should: [
+            {
+              match: {
+                email: 'Rafaela_Kohler74@gmail.com'
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+});
+```
