@@ -24,7 +24,7 @@
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "release": "node -r dotenv/config $(npm bin)/release-it --scripts-prepend-node-path"
+    "release": "node -r dotenv/config $(npm bin)/release-it"
   },
   "peerDependencies": {},
   "husky": {
