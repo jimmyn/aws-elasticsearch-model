@@ -105,10 +105,29 @@ To execure the query call `query.exec()` at the end
 ```typescript
 const query = elasticModel
   .queryBuilder()
-  .filter('match', 'email', 'Ibrahim.Sawayn93@hotmail.com')
-  .orFilter('match', 'email', 'Rafaela_Kohler74@gmail.com');
+  .orFilter('term', 'email', 'Vidal45@gmail.com')
+  .orFilter('term', 'email', 'Marcel16@yahoo.com');
 
 const result = await query.exec();
+```
+
+```typescript
+{
+  "items": [
+  {
+    "id": "554d9d95-b40b-4ddc-9fa9-ed3eb8b5c591",
+    "email": "Vidal45@gmail.com",
+    "name": "Beverly_Mayer18"
+  },
+  {
+    "id": "cf39921a-41ce-49cc-b034-13fb1508c726",
+    "email": "Marcel16@yahoo.com",
+    "name": "Petra70"
+  }
+  ],
+  "total": 2,
+  "raw": {...} //elasticsearch response
+}
 ```
 
 You can also run a search query directly. The query above is equivalent to:
@@ -119,15 +138,15 @@ const result = await elasticModel.search({
     bool: {
       filter: {
         bool: {
-          must: {
-            match: {
-              email: 'Ibrahim.Sawayn93@hotmail.com'
-            }
-          },
           should: [
             {
-              match: {
-                email: 'Rafaela_Kohler74@gmail.com'
+              term: {
+                email: 'Vidal45@gmail.com'
+              }
+            },
+            {
+              term: {
+                email: 'Marcel16@yahoo.com'
               }
             }
           ]
