@@ -3,7 +3,7 @@ A small library that simplifies [AWS Elasticsearch Service](https://aws.amazon.c
 
 ## Install
 ```
-npm install aws-elasticsearch-model
+npm install aws-elasticsearch-model --save
 ```
 or
 ```
