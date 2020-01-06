@@ -124,7 +124,7 @@ By default ElasticSearch will try to guess your data stracture but you can provi
 
 ```typescript
 const elasticModel = new ElasticModel({
-  host: 'https://my-aws-elasticsearch-domain-udlcqmxzyxqjc5pkoab2oeg2ai.eu-west-1.es.amazonaws.com',
+  host: 'https://my-aws-elasticsearch-domain.eu-west-1.es.amazonaws.com',
   index: 'users',
   settings: {
     analysis: {
@@ -153,12 +153,12 @@ const elasticModel = new ElasticModel({
 
 Read more about [mappings](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) and [settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings)
 
-## Use custom id field
-By defaul ElasticModel will use `id` field in your data to privide unique id to ElasticSearch but it can be customized.
+## Use custom `id` field
+By defaul ElasticModel will use `id` field in your data to privide unique `id` to ElasticSearch but it can be customized.
 
 ```typescript
 const elasticModel = new ElasticModel({
-  host: 'https://my-aws-elasticsearch-domain-udlcqmxzyxqjc5pkoab2oeg2ai.eu-west-1.es.amazonaws.com',
+  host: 'https://my-aws-elasticsearch-domain.eu-west-1.es.amazonaws.com',
   index: 'users',
   idField: 'userId'
 });
@@ -176,4 +176,35 @@ export const handler = async (event: DynamoDBStreamEvent) => {
     return new Buffer(keys.userId).toString('base64');
   });
 };
+```
+
+## Exclude fields
+To completly exclude fields from ElasticSearch you can provide `excludedFields` option. This option will remove the field before data is submited.
+
+```typescript
+const elasticModel = new ElasticModel({
+  host: 'https://my-aws-elasticsearch-domain.eu-west-1.es.amazonaws.com',
+  index: 'users',
+  excludedFields: ['email']
+});
+```
+If you want field value to be stored but not indexed or available for search you can set `idex: false` parameter in mapping
+
+```typescript
+const elasticModel = new ElasticModel({
+  host: 'https://my-aws-elasticsearch-domain.eu-west-1.es.amazonaws.com',
+  index: 'users',
+  mapping: {
+    id: {
+      type: 'keyword'
+    },
+    email: {
+      index: false,
+      type: 'text'
+    },
+    name: {
+      type: 'text'
+    }
+  }
+});
 ```
