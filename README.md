@@ -152,3 +152,28 @@ const elasticModel = new ElasticModel({
 ```
 
 Read more about [mappings](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) and [settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings)
+
+## Use custom id field
+By defaul ElasticModel will use `id` field in your data to privide unique id to ElasticSearch but it can be customized.
+
+```typescript
+const elasticModel = new ElasticModel({
+  host: 'https://my-aws-elasticsearch-domain-udlcqmxzyxqjc5pkoab2oeg2ai.eu-west-1.es.amazonaws.com',
+  index: 'users',
+  idField: 'userId'
+});
+```
+
+When you sync your data with DynamoDB `DynamoDBStreamEvent` event provides `Keys` object that will contain a composit hash key of your item. For example if you have `hashKey: 'userId', rangeKey: 'createdAt'` by default only `userId` filed will be selected as `id` (if it is specified in config).
+
+This behaviour can be customized: 
+
+```typescript
+export const handler = async (event: DynamoDBStreamEvent) => {
+  return elasticModel.indexFromDynamoDBStream(event, keys => {
+    // keys: {userId, createdAt}
+    // use base64 encoded userId
+    return new Buffer(keys.userId).toString('base64');
+  });
+};
+```
