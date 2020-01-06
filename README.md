@@ -35,14 +35,14 @@ ElasticModel will automatically create [elasticsearch index](https://www.elastic
 ```typescript
 const users = [
   {
-    id: '0ee2fa0e-28c5-49d5-9156-5018f7263615',
-    email: 'Ibrahim.Sawayn93@hotmail.com',
-    name: 'Khalil_Lebsack'
+    id: '554d9d95-b40b-4ddc-9fa9-ed3eb8b5c591',
+    email: 'Vidal45@gmail.com',
+    name: 'Beverly_Mayer18'
   },
   {
-    id: '04a425bf-07ed-4369-bc6f-e51ac414b93c',
-    email: 'Rafaela_Kohler74@gmail.com',
-    name: 'Ayden_Rodriguez'
+    id: 'cf39921a-41ce-49cc-b034-13fb1508c726',
+    email: 'Marcel16@yahoo.com',
+    name: 'Petra70'
   },
   {
     id: '81ab442a-b693-47e5-b9e1-6807cbb7978e',
@@ -113,20 +113,20 @@ const result = await query.exec();
 
 ```typescript
 {
-  'items': [
+  items: [
     {
-      'id': '554d9d95-b40b-4ddc-9fa9-ed3eb8b5c591',
-      'email': 'Vidal45@gmail.com',
-      'name': 'Beverly_Mayer18'
+      id: '554d9d95-b40b-4ddc-9fa9-ed3eb8b5c591',
+      email: 'Vidal45@gmail.com',
+      name: 'Beverly_Mayer18'
     },
     {
-      'id': 'cf39921a-41ce-49cc-b034-13fb1508c726',
-      'email': 'Marcel16@yahoo.com',
-      'name': 'Petra70'
+      id: 'cf39921a-41ce-49cc-b034-13fb1508c726',
+      email: 'Marcel16@yahoo.com',
+      name: 'Petra70'
     }
   ],
-  'total': 2,
-  'raw': {...} //raw elasticsearch response
+  total: 2,
+  raw: {...} // raw elasticsearch response
 }
 ```
 
