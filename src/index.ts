@@ -3,7 +3,7 @@ import bodyBuilder, {AggregationBuilder, FilterBuilder, QueryBuilder} from 'body
 import {AttributeValue as attr} from 'dynamodb-data-types';
 import {Client, IndicesCreateParams, SearchResponse} from 'elasticsearch';
 import httpAwsEs from 'http-aws-es';
-import {excludeKeys} from 'utils';
+import {excludeKeys, validateConfig} from 'utils';
 
 // Read more about ElasticSearch mappings
 // https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
@@ -54,7 +54,7 @@ export interface IElasticModelConfig {
   mapping?: IElasticMapping;
   settings?: IElasticSettings;
   idField?: string;
-  apiVersion: string;
+  apiVersion?: string;
   excludedFields?: string[];
 }
 
@@ -77,6 +77,8 @@ export class ElasticModel<T extends Item> {
    * @param config.excludedFields - an array of fields excluded from ES
    */
   constructor(config: IElasticModelConfig) {
+    validateConfig(config, ['host', 'index']);
+
     this.index = config.index;
     this.mapping = config.mapping;
     this.settings = config.settings;

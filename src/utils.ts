@@ -11,3 +11,11 @@ export function excludeKeys(source: {[key: string]: any}, keys: string[]) {
   });
   return copy;
 }
+
+export function validateConfig(config: {[key: string]: any}, requiredProps: string[]) {
+  requiredProps.forEach(prop => {
+    if (config[prop] === undefined || config[prop] === null) {
+      throw new Error(`Required config "${prop}" is missing!`)
+    }
+  })
+}
