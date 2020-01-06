@@ -113,20 +113,20 @@ const result = await query.exec();
 
 ```typescript
 {
-  "items": [
-  {
-    "id": "554d9d95-b40b-4ddc-9fa9-ed3eb8b5c591",
-    "email": "Vidal45@gmail.com",
-    "name": "Beverly_Mayer18"
-  },
-  {
-    "id": "cf39921a-41ce-49cc-b034-13fb1508c726",
-    "email": "Marcel16@yahoo.com",
-    "name": "Petra70"
-  }
+  'items': [
+    {
+      'id': '554d9d95-b40b-4ddc-9fa9-ed3eb8b5c591',
+      'email': 'Vidal45@gmail.com',
+      'name': 'Beverly_Mayer18'
+    },
+    {
+      'id': 'cf39921a-41ce-49cc-b034-13fb1508c726',
+      'email': 'Marcel16@yahoo.com',
+      'name': 'Petra70'
+    }
   ],
-  "total": 2,
-  "raw": {...} //elasticsearch response
+  'total': 2,
+  'raw': {...} //raw elasticsearch response
 }
 ```
 
