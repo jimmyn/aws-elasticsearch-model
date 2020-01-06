@@ -61,7 +61,7 @@ export interface IElasticModelConfig {
   excludedFields?: string[];
 }
 
-export class ElasticModel<T extends Item> {
+class ElasticModel<T extends Item> {
   client: Client;
   protected index: string;
   protected idField: string;
@@ -123,9 +123,12 @@ export class ElasticModel<T extends Item> {
       body: query
     };
     const response = await this.client.search<T>(params);
-    // @ts-ignore
-    const total =
-      typeof response.hits.total === 'number' ? response.hits.total : response.hits.total.value;
+    let total: number;
+    if (typeof response.hits.total === 'number') {
+      total = response.hits.total;
+    } else {
+      total = (response.hits.total as {value: number}).value;
+    }
     return {
       items: response.hits.hits.map(hit => hit._source),
       total,
@@ -139,7 +142,7 @@ export class ElasticModel<T extends Item> {
    * read more - https://www.npmjs.com/package/bodybuilder
    * Call query.exec at the end to execute the query
    */
-  buildQuery(): IBodyBuilder<T> {
+  queryBuilder(): IBodyBuilder<T> {
     const self = this;
     const query = (bodyBuilder() as unknown) as IBodyBuilder<T>;
     query.exec = function() {
@@ -211,7 +214,6 @@ export class ElasticModel<T extends Item> {
   async createIndexIfMissing() {
     // check if index already exists
     const indexExists = await this.client.indices.exists({index: this.index});
-    console.log({indexExists});
     if (indexExists) return true;
 
     const params: IndicesCreateParams = {index: this.index, body: {}};
@@ -224,8 +226,8 @@ export class ElasticModel<T extends Item> {
       params.body.settings = this.settings;
     }
 
-    console.log(JSON.stringify(params, null, 2));
-
     return this.client.indices.create(params);
   }
 }
+
+export default ElasticModel;

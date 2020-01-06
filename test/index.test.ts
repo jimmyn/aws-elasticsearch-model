@@ -1,6 +1,6 @@
 import {Client} from 'elasticsearch';
 import {dynamoDBStreamEvent} from './fixtures';
-import {ElasticModel} from 'index';
+import ElasticModel from 'index';
 
 const defaultConfig = {
   host: 'https://someurl.com',
@@ -107,7 +107,7 @@ describe('ElasticModel', () => {
     const model = new ElasticModel(defaultConfig);
     const searchSpy = jest.spyOn(model, 'search');
     const query = model
-      .buildQuery()
+      .queryBuilder()
       .sort('createdAt', 'desc')
       .from(5)
       .size(5);
