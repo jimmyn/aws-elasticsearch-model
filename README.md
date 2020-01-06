@@ -75,7 +75,7 @@ export const handler = async (event: DynamoDBStreamEvent) => {
 ```
 
 ## Query your data
-`queryBuilder` method will return a chainable function that allows easily build complex queries for elasticsearch with a simple, predictable api.
+[queryBuilder](src/index.ts#L145) method will return a chainable function that allows easily build complex queries for elasticsearch with a simple, predictable api.
 
 It uses [bodybuilder](https://github.com/danpaz/bodybuilder) package by [Daniel Paz-Soldan](https://github.com/danpaz)
 
