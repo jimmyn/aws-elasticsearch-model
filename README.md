@@ -86,7 +86,7 @@ Your lambda function needs to have a role attached to it that allows to access y
         "es:ESHttpPut",
         "es:ESHttpDelete"
       ],
-      "Resource": "arn:aws:es:AWS_REGION:AWS_ACCOUNT_ID:domain/my-elasticsearch-domain/*",
+      "Resource": "arn:aws:es:AWS_REGION:AWS_ACCOUNT_ID:domain/my-aws-elasticsearch-domain/*",
       "Effect": "Allow"
     }
   ]
