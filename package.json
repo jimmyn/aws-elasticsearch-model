@@ -24,7 +24,7 @@
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "release": "node -r dotenv/config $(yarn bin)/release-it"
+    "release": "release-it"
   },
   "peerDependencies": {},
   "husky": {
