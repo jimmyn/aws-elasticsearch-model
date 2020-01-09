@@ -3,11 +3,11 @@ A small library that simplifies [AWS Elasticsearch Service](https://aws.amazon.c
 
 ## Install
 ```
-npm install aws-elasticsearch-model --save
+npm i aws-elasticsearch-model --save
 ```
 or
 ```
-yarn install aws-elasticsearch-model
+yarn add aws-elasticsearch-model
 ```
 
 ## Intitialize
