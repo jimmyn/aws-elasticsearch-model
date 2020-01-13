@@ -3,7 +3,7 @@ import bodyBuilder, {AggregationBuilder, FilterBuilder, QueryBuilder} from 'body
 import {AttributeValue as attr} from 'dynamodb-data-types';
 import {Client, IndicesCreateParams, SearchResponse} from 'elasticsearch';
 import httpAwsEs from 'http-aws-es';
-import {excludeKeys, validateConfig} from 'utils';
+import {excludeKeys, validateConfig} from './utils';
 
 // Read more about ElasticSearch mappings
 // https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
