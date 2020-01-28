@@ -1,6 +1,6 @@
 import {Client} from 'elasticsearch';
 import {dynamoDBStreamEvent} from './fixtures';
-import ElasticModel from 'index';
+import {ElasticModel} from 'index';
 
 const defaultConfig = {
   host: 'https://someurl.com',
