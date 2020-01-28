@@ -56,25 +56,25 @@
     }
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.39",
+    "@types/aws-lambda": "^8.10.40",
     "@types/elasticsearch": "^5.0.36",
-    "@types/faker": "^4.1.8",
+    "@types/faker": "^4.1.9",
     "@types/http-aws-es": "^6.0.0",
-    "@types/jest": "^24.0.25",
-    "aws-lambda": "latest",
-    "aws-sdk": "^2.597.0",
+    "@types/jest": "^25.1.0",
+    "aws-lambda": "1.0.5",
+    "aws-sdk": "^2.610.0",
     "dotenv": "^8.2.0",
     "faker": "latest",
-    "husky": "^3.1.0",
+    "husky": "^4.2.1",
     "release-it": "^12.4.3",
-    "tsdx": "^0.12.1",
+    "tsdx": "^0.12.3",
     "tslib": "^1.10.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "dependencies": {
     "bodybuilder": "^2.2.20",
     "dynamodb-data-types": "^3.0.1",
-    "elasticsearch": "^16.5.0",
+    "elasticsearch": "16.6.0",
     "http-aws-es": "^6.0.0"
   }
 }

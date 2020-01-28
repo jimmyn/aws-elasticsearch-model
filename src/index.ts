@@ -61,7 +61,7 @@ export interface IElasticModelConfig {
   excludedFields?: string[];
 }
 
-class ElasticModel<T extends Item> {
+export class ElasticModel<T extends Item> {
   client: Client;
   protected index: string;
   protected idField: string;
@@ -116,12 +116,12 @@ class ElasticModel<T extends Item> {
 
   /**
    * Executes search query
-   * @param query - search query
+   * @param body - search request body
    */
-  async search(query: Query): Promise<ISearchResult<T>> {
+  async search(body: Query): Promise<ISearchResult<T>> {
     const params = {
       index: this.index,
-      body: query
+      body
     };
     const response = await this.client.search<T>(params);
     let total: number;
@@ -230,5 +230,3 @@ class ElasticModel<T extends Item> {
     return this.client.indices.create(params);
   }
 }
-
-export default ElasticModel;

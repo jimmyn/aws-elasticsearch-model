@@ -14,7 +14,7 @@ yarn add aws-elasticsearch-model
 
 ```typescript
 import AWS from 'aws-sdk';
-import ElasticModel from 'aws-elasticsearch-model';
+import {ElasticModel} from 'aws-elasticsearch-model';
 
 /*
  ElasticModel uses aws-sdk's default behaviour to obtain region + credentials from your environment. 
@@ -61,7 +61,7 @@ Attach this lambda handler to your DynamoDB table and it will sync all the data 
 
 ```typescript
 import {DynamoDBStreamEvent} from 'aws-lambda';
-import ElasticModel from 'aws-elasticsearch-model';
+import {ElasticModel} from 'aws-elasticsearch-model';
 
 const elasticModel = new ElasticModel({
   host: 'https://my-aws-elasticsearch-domain.eu-west-1.es.amazonaws.com',
