@@ -1,7 +1,7 @@
 import {DynamoDBStreamEvent} from 'aws-lambda';
 import bodyBuilder, {AggregationBuilder, FilterBuilder, QueryBuilder} from 'bodybuilder';
 import {AttributeValue as attr} from 'dynamodb-data-types';
-import {Client, IndicesCreateParams, SearchResponse} from 'elasticsearch';
+import {Client, ConfigOptions, IndicesCreateParams, SearchResponse} from 'elasticsearch';
 import httpAwsEs from 'http-aws-es';
 import {excludeKeys, validateConfig} from './utils';
 
@@ -59,6 +59,7 @@ export interface IElasticModelConfig {
   idField?: string;
   apiVersion?: string;
   excludedFields?: string[];
+  clientConfig: ConfigOptions;
 }
 
 export class ElasticModel<T extends Item> {
@@ -91,7 +92,8 @@ export class ElasticModel<T extends Item> {
     this.client = new Client({
       hosts: config.host,
       apiVersion: config.apiVersion || '7.1',
-      connectionClass: httpAwsEs
+      connectionClass: httpAwsEs,
+      ...config.clientConfig
     });
   }
 
