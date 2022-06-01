@@ -59,7 +59,7 @@ export interface IElasticModelConfig {
   idField?: string;
   apiVersion?: string;
   excludedFields?: string[];
-  clientConfig: ConfigOptions;
+  clientConfig?: ConfigOptions;
 }
 
 export class ElasticModel<T extends Item> {
